@@ -7,7 +7,7 @@ import pandas as pd # tipo matricial  2d csv particles colors
 
 # --------------------------------------------------------------------------
 
-img_path = 'pic1.jpg' # puedes cambiar las imágenes
+img_path = 'pic4.jpg' # puedes cambiar las imágenes
 csv_path = 'colors.csv' #data frame de los colores
 
 # reading csv file
@@ -33,7 +33,7 @@ img = cv2.resize(img, (800,620))
 clicked = False
 r = g = b = xpos = ypos = 0
 
-#function to calculate minimum distance from all colors and get the most matching color
+#function to calculate minimum distance from all colors da el color mas cercano o par
 def get_color_name(R,G,B):
 	minimum = 1000
 	for i in range(len(df)):
@@ -44,7 +44,7 @@ def get_color_name(R,G,B):
 
 	return cname
 
-#function to get x,y coordinates of mouse double click
+#function to get x,y coordenadas of mouse double click
 def draw_function(event, x, y, flags, params):
 	if event == cv2.EVENT_LBUTTONDBLCLK: #doble click
 		global b, g, r, xpos, ypos, clicked
@@ -63,13 +63,13 @@ cv2.setMouseCallback('image', draw_function)
 while True:
 	cv2.imshow('image', img)
 	if clicked:
-		#cv2.rectangle(image, startpoint, endpoint, color, thickness)-1 fills entire rectangle 
+		#cv2.rectangle(image, startpoint, endpoint, color, thickness)-1 fills entire rectangle posiciones
 		cv2.rectangle(img, (20,20), (600,60), (b,g,r), -1)
 
 		#Creating text string to display( Color name and RGB values )
 		text = get_color_name(r,g,b) + ' R=' + str(r) + ' G=' + str(g) + ' B=' + str(b)
 		#cv2.putText(img,text,start,font(0-7),fontScale,color,thickness,lineType )
-		cv2.putText(img, text, (50,50), 2,0.8, (255,255,255),2,cv2.LINE_AA)
+		cv2.putText(img, text, (50,50), 2,0.8, (255,211,0),2,cv2.LINE_AA)
 
 		#For very light colours we will display text in black colour
 		if r+g+b >=600:
